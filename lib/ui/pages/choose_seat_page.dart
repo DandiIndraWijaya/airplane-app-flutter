@@ -1,3 +1,5 @@
+import 'package:airplane/ui/pages/checkout_page.dart';
+import 'package:airplane/ui/widgets/custom_button.dart';
 import 'package:airplane/ui/widgets/seat_item.dart';
 import 'package:flutter/material.dart';
 import '../../shared/theme.dart';
@@ -285,7 +287,55 @@ class ChooseSeatPage extends StatelessWidget {
               ],
             ),
           ),
+
+          // NOTE: YOUR SEAT
+          Container(
+            margin: const EdgeInsets.only(top: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Your Seat',
+                  style: greyTextStyle.copyWith(fontWeight: light),
+                ),
+                Text(
+                  'A3, B3',
+                  style:
+                      blackTextStyle.copyWith(fontSize: 16, fontWeight: medium),
+                )
+              ],
+            ),
+          ),
+
+          // NOTE: TOTAL
+          Container(
+            margin: const EdgeInsets.only(top: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Total',
+                  style: greyTextStyle.copyWith(fontWeight: light),
+                ),
+                Text(
+                  'IDR 540.000.000',
+                  style: purpleTextStyle.copyWith(
+                      fontSize: 16, fontWeight: semiBold),
+                )
+              ],
+            ),
+          )
         ]),
+      );
+    }
+
+    Widget checkoutButton() {
+      return CustomButton(
+        title: 'Continue to Checkout',
+        width: double.infinity,
+        onPressed: () => Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const CheckoutPage())),
+        margin: const EdgeInsets.only(top: 30, bottom: 40),
       );
     }
 
@@ -294,7 +344,7 @@ class ChooseSeatPage extends StatelessWidget {
       body: SafeArea(
           child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        children: [title(), seatStatus(), selectSeat()],
+        children: [title(), seatStatus(), selectSeat(), checkoutButton()],
       )),
     );
   }
